@@ -21,20 +21,20 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
         boolean isLingZhi = false;
         boolean isFanWeiYiChang = false;
 
-        //---判断车辆状态---
-        int carStatus = bean.getTotalCarData().getCarStatus();
-        if(carStatus == 0xFE) isYiChang = true;
-        if(carStatus == 0xFF) isWuXiao = true;
-        //------------------------------
-        int chargeStatus = bean.getTotalCarData().getChargeStatus();
-        if(chargeStatus == 0xFE) isYiChang = true;
-        if(chargeStatus == 0xFF) isWuXiao = true;
+        //判断空值的方法
+        if(bean.getTotalCarData() == null){
+            isKongZhi = true;
+        }else{
+            //---判断车辆状态---
+            int carStatus = bean.getTotalCarData().getCarStatus();
+            if(carStatus == 0xFE) isYiChang = true;
+            if(carStatus == 0xFF) isWuXiao = true;
+            //------------------------------
+            int chargeStatus = bean.getTotalCarData().getChargeStatus();
+            if(chargeStatus == 0xFE) isYiChang = true;
+            if(chargeStatus == 0xFF) isWuXiao = true;
 
-        if(carStatus != 0x02){//不是停车状态
-            //判断空值的方法
-            if(bean.getTotalCarData() == null){
-                isKongZhi = true;
-            }else{
+            if(carStatus != 0x02){//不是停车状态
                 TotalCarData totalCarData = bean.getTotalCarData();
                 float speed = totalCarData.getVelocity();
                 //判断范围异常
@@ -44,10 +44,14 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
                 //对于之前转换过的小数，我们把FE FF按照一样的方法转换，判断是否相等
                 if(speed == Integer.parseInt("FFFE", 16) * 0.1f) isYiChang = true;
                 if(speed == Integer.parseInt("FFFF", 16) * 0.1f) isWuXiao = true;
-            }
-        }else{//是停车状态
 
+            }else{//是停车状态
+
+            }
         }
+
+
+
 
         if(isYiChang) yiChangCount++;
         if(isKongZhi) kongZhiCount++;
