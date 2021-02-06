@@ -14,7 +14,7 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
     @Override
     public boolean isDataValid(MessageBean bean) {
 
-
+        //定义一些布尔值
         boolean isYiChang = false;
         boolean isWuXiao = false;
         boolean isKongZhi = false;
