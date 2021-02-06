@@ -102,7 +102,7 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
                 if(dianJiSerialNum == 0) isLingZhi = true;
 
                 //---电机个数---
-                int dianJiNum = dianJiData.getDianjiNum();
+                int dianJiNum = bean.getDianJiDataList().size();
                 if(dianJiNum < 1 || dianJiNum > 254) isFanWeiYiChang = true;
                 if(dianJiNum == 0) isLingZhi = true;
 
