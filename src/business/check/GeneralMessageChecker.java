@@ -89,7 +89,10 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
         if(bean.getDianJiDataList() == null){
             isKongZhi = true;
         }else{
-
+            bean.getDianJiDataList().forEach(dianJiData -> {
+                int dianJiTemp = dianJiData.getDianJiTemp();
+                //...继续判断...
+            });
         }
 
         //判断发动机数据
@@ -245,5 +248,10 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
     @Override
     protected void preCheck(MessageBean bean) {
 
+    }
+
+    @Override
+    public String getFinalResult() {
+        return "";
     }
 }

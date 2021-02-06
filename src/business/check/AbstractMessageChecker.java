@@ -61,4 +61,10 @@ public abstract class AbstractMessageChecker {
 
     }
 
+    /**
+     * 获取最终结果，字符串形式
+     * @return 检查结果
+     */
+    public abstract String getFinalResult();
+
 }
