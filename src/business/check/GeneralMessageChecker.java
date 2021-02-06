@@ -90,8 +90,16 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
             isKongZhi = true;
         }else{
             bean.getDianJiDataList().forEach(dianJiData -> {
+
+                //---电机序列号状态---
+                int dianJiSerialNum = dianJiData.getDianJiSerialNum();
+                if(dianJiSerialNum < 0 || dianJiSerialNum > 254) isFanWeiYiChang = true;
+                if(dianJiSerialNum == 0) isLingZhi = true;
+
+
+
                 int dianJiTemp = dianJiData.getDianJiTemp();
-                //...继续判断...
+
             });
         }
 
