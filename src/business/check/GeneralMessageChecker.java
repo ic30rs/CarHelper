@@ -115,8 +115,8 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
                 //---驱动电机控制器温度---
                 int dianJiControllerTemp = dianJiData.getDianJiControllerTemp();
                 if(dianJiControllerTemp < -40 || dianJiControllerTemp > 210) isFanWeiYiChang = true;
-                if(dianJiControllerTemp == 0xFE) isYiChang = true;
-                if(dianJiControllerTemp == 0xFF) isWuXiao = true;
+                if(dianJiControllerTemp == -40+Integer.parseInt("FE", 16)) isYiChang = true;
+                if(dianJiControllerTemp == -40+Integer.parseInt("FE", 16)) isWuXiao = true;
 
                 //---驱动电机转速---
                 int dianJiZhuanSu = dianJiData.getDianJiZhuanSu();
@@ -133,8 +133,8 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
                 //---驱动电机温度---
                 int dianJiTemp = dianJiData.getDianJiTemp();
                 if(dianJiTemp < -40 || dianJiTemp > 210) isFanWeiYiChang = true;
-                if(dianJiTemp == 0xFE) isYiChang = true;
-                if(dianJiTemp == 0xFF) isWuXiao = true;
+                if(dianJiTemp == -40+Integer.parseInt("FE", 16)) isYiChang = true;
+                if(dianJiTemp == -40+Integer.parseInt("FF", 16)) isWuXiao = true;
 
                 //---电气控制器输入电压---
                 float dianJiControllerDianYa = dianJiData.getDianJiControllerDianYa();
@@ -261,8 +261,8 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
             int highTemp = bean.getExtremeData().getHighTemp();
             if(highTemp < -40 || highTemp > 210) isFanWeiYiChang = true;
             if(highTemp == 0) isLingZhi = true;
-            if(highTemp == 0xFE) isYiChang = true;
-            if(highTemp == 0xFF) isWuXiao = true;
+            if(highTemp == -40+Integer.parseInt("FE", 16)) isYiChang = true;
+            if(highTemp == -40+Integer.parseInt("FF", 16)) isWuXiao = true;
 
             //---最低温度子系统---
             int lowSysNum = bean.getExtremeData().getLowSysNum();
@@ -282,8 +282,8 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
             int lowTemp = bean.getExtremeData().getLowTemp();
             if(lowTemp < -40 || lowTemp > 210) isFanWeiYiChang = true;
             if(lowTemp == 0) isLingZhi = true;
-            if(lowTemp == 0xFE) isYiChang = true;
-            if(lowTemp == 0xFF) isWuXiao = true;
+            if(lowTemp == -40+Integer.parseInt("FE", 16)) isYiChang = true;
+            if(lowTemp == -40+Integer.parseInt("FF", 16)) isWuXiao = true;
 
 
 
