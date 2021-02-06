@@ -91,8 +91,66 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
             isKongZhi = true;
         }else{
             for(DianJiData dianJiData : bean.getDianJiDataList()){
+
+
+
+                //---电机序号---
+                int dianJiSerialNum = dianJiData.getDianJiSerialNum();
+                if(dianJiSerialNum < 1 || dianJiSerialNum > 254) isFanWeiYiChang = true;
+                if(dianJiSerialNum == 0) isLingZhi = true;
+
+                //---电机个数---
+                int dianJiNum = dianJiData.getDianjiNum();
+                if(dianJiNum < 1 || dianJiNum > 254) isFanWeiYiChang = true;
+                if(dianJiNum == 0) isLingZhi = true;
+
+                //---电机状态---
+                int dianjiStatus = dianJiData.getDianJiStatus();
+                if(dianjiStatus == 0) isLingZhi = true;
+                if(dianjiStatus == 0xFE) isYiChang = true;
+                if(dianjiStatus == 0xFF) isWuXiao = true;
+
+                //---驱动电机控制器温度---
+                int dianJiControllerTemp = dianJiData.getDianJiControllerTemp();
+                if(dianJiControllerTemp < -40 || dianJiControllerTemp > 210) isFanWeiYiChang = true;
+                if(dianJiControllerTemp == 0xFE) isYiChang = true;
+                if(dianJiControllerTemp == 0xFF) isWuXiao = true;
+
+                //---驱动电机转速---
+                int dianJiZhuanSu = dianJiData.getDianJiZhuanSu();
+                if(dianJiZhuanSu < -20000 || dianJiZhuanSu > 45531) isFanWeiYiChang = true;
+                if(dianJiZhuanSu == Integer.parseInt("FFFE", 16) ) isYiChang = true;
+                if(dianJiZhuanSu == Integer.parseInt("FFFF", 16) ) isWuXiao = true;
+
+                //---驱动电机转距---
+                float dianJiNiuJu = dianJiData.getDianJiNiuJu();
+                if(dianJiZhuanSu < -2000 || dianJiZhuanSu > 4553.1) isFanWeiYiChang = true;
+                if(dianJiZhuanSu == Integer.parseInt("FFFE", 16) *0.1f) isYiChang = true;
+                if(dianJiZhuanSu == Integer.parseInt("FFFF", 16) *0.1f) isWuXiao = true;
+
+                //---驱动电机温度---
                 int dianJiTemp = dianJiData.getDianJiTemp();
-                //...继续判断...
+                if(dianJiTemp < -40 || dianJiTemp > 210) isFanWeiYiChang = true;
+                if(dianJiTemp == 0xFE) isYiChang = true;
+                if(dianJiTemp == 0xFF) isWuXiao = true;
+
+                //---电气控制器输入电压---
+                float dianJiControllerDianYa = dianJiData.getDianJiControllerDianYa();
+                if(dianJiControllerDianYa < 0 || dianJiControllerDianYa > 6000) isFanWeiYiChang = true;
+                if(dianJiControllerDianYa == Integer.parseInt("FFFE", 16) *0.1f) isYiChang = true;
+                if(dianJiControllerDianYa == Integer.parseInt("FFFF", 16) *0.1f) isWuXiao = true;
+
+                //---电气控制器输入电压---
+                float dianJiControllerZhiLiuMuXianDianLiu = dianJiData.getDianJiControllerZhiLiuMuXianDianLiu();
+                if(dianJiControllerZhiLiuMuXianDianLiu < -1000 || dianJiControllerZhiLiuMuXianDianLiu > 1000) isFanWeiYiChang = true;
+                if(dianJiControllerZhiLiuMuXianDianLiu == Integer.parseInt("FFFE", 16) *0.1f) isYiChang = true;
+                if(dianJiControllerZhiLiuMuXianDianLiu == Integer.parseInt("FFFF", 16) *0.1f) isWuXiao = true;
+
+
+
+
+
+
             }
         }
 

@@ -2,6 +2,8 @@ package business.model;
 
 public class DianJiData {
 
+    //电机个数
+    int DianjiNum;
     //电机序号
     int DianJiSerialNum;
     //电机状态
@@ -18,6 +20,15 @@ public class DianJiData {
     float DianJiControllerDianYa;
     //电机控制器直流母线电流
     float DianJiControllerZhiLiuMuXianDianLiu;
+
+    public int getDianjiNum() {
+        return DianjiNum;
+    }
+
+    public void setDianjiNum(int dianjiNum) {
+        DianjiNum = dianjiNum;
+    }
+
 
     public int getDianJiSerialNum() {
         return DianJiSerialNum;
