@@ -58,7 +58,7 @@ public class MessageResolver {
                     totalCarData.setVelocity(0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+3,nowOffset+4), 16));
                     totalCarData.setTotalDistance(0.1f * Long.parseLong(rawBean.getHexAt(nowOffset+5,nowOffset+8), 16));
                     totalCarData.setZongDianYa(0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+9,nowOffset+10), 16));
-                    totalCarData.setZongDianLiu(0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+11,nowOffset+12), 16));
+                    totalCarData.setZongDianLiu(-1000+0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+11,nowOffset+12), 16));
                     totalCarData.setSOC(Integer.parseInt(rawBean.getHexAt(nowOffset+13,nowOffset+13), 16));
                     totalCarData.setDC_DC_Status(Integer.parseInt(rawBean.getHexAt(nowOffset+14,nowOffset+14), 16));
                     totalCarData.setDangWei(Integer.parseInt(rawBean.getHexAt(nowOffset+15,nowOffset+15), 16));
@@ -74,11 +74,11 @@ public class MessageResolver {
                         data.setDianJiSerialNum(Integer.parseInt(rawBean.getHexAt(nowOffset+1,nowOffset+1), 16));
                         data.setDianJiStatus(Integer.parseInt(rawBean.getHexAt(nowOffset+2,nowOffset+2), 16));
                         data.setDianJiControllerTemp(-40+Integer.parseInt(rawBean.getHexAt(nowOffset+3,nowOffset+3), 16));
-                        data.setDianJiZhuanSu(Integer.parseInt(rawBean.getHexAt(nowOffset+4,nowOffset+5), 16));
-                        data.setDianJiNiuJu(0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+6,nowOffset+7), 16));
+                        data.setDianJiZhuanSu(-20000+Integer.parseInt(rawBean.getHexAt(nowOffset+4,nowOffset+5), 16));
+                        data.setDianJiNiuJu(-2000+0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+6,nowOffset+7), 16));
                         data.setDianJiTemp(-40+Integer.parseInt(rawBean.getHexAt(nowOffset+8,nowOffset+8), 16));
                         data.setDianJiControllerDianYa(0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+9,nowOffset+10), 16));
-                        data.setDianJiControllerZhiLiuMuXianDianLiu(0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+11,nowOffset+12), 16));
+                        data.setDianJiControllerZhiLiuMuXianDianLiu(-1000+0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+11,nowOffset+12), 16));
                         dianJiDataList.add(data);
                         nowOffset += 12;
                     }
