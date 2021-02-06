@@ -44,8 +44,8 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
                 //判断零值
                 if(speed == 0) isLingZhi = true;
                 //对于之前转换过的小数，我们把FE FF按照一样的方法转换，判断是否相等
-                if(speed == Integer.parseInt("FE", 16) * 0.1f) isYiChang = true;
-                if(speed == Integer.parseInt("FF", 16) * 0.1f) isWuXiao = true;
+                if(speed == Integer.parseInt("FFFE", 16) * 0.1f) isYiChang = true;
+                if(speed == Integer.parseInt("FFFF", 16) * 0.1f) isWuXiao = true;
             }
         }else{//是停车状态
 
