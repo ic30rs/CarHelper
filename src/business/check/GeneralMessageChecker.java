@@ -126,9 +126,9 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
 
                 //---驱动电机转距---
                 float dianJiNiuJu = dianJiData.getDianJiNiuJu();
-                if(dianJiZhuanSu < -2000 || dianJiZhuanSu > 4553.1) isFanWeiYiChang = true;
-                if(dianJiZhuanSu == Integer.parseInt("FFFE", 16) *0.1f) isYiChang = true;
-                if(dianJiZhuanSu == Integer.parseInt("FFFF", 16) *0.1f) isWuXiao = true;
+                if(dianJiNiuJu < -2000 || dianJiNiuJu > 4553.1) isFanWeiYiChang = true;
+                if(dianJiNiuJu == Integer.parseInt("FFFE", 16) *0.1f) isYiChang = true;
+                if(dianJiNiuJu == Integer.parseInt("FFFF", 16) *0.1f) isWuXiao = true;
 
                 //---驱动电机温度---
                 int dianJiTemp = dianJiData.getDianJiTemp();
