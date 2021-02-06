@@ -56,7 +56,7 @@ public class MessageResolver {
                     totalCarData.setRunStatus(Integer.parseInt(rawBean.getHexAt(nowOffset+2,nowOffset+2), 16));
                     //车速，所有小数的
                     totalCarData.setVelocity(0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+3,nowOffset+4), 16));
-                    totalCarData.setTotalDistance(0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+5,nowOffset+8), 16));
+                    totalCarData.setTotalDistance(0.1f * Long.parseLong(rawBean.getHexAt(nowOffset+5,nowOffset+8), 16));
                     totalCarData.setZongDianYa(0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+9,nowOffset+10), 16));
                     totalCarData.setZongDianLiu(0.1f * Integer.parseInt(rawBean.getHexAt(nowOffset+11,nowOffset+12), 16));
                     totalCarData.setSOC(Integer.parseInt(rawBean.getHexAt(nowOffset+13,nowOffset+13), 16));

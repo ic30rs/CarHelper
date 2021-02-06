@@ -5,6 +5,7 @@ import business.MessageResolver;
 import business.model.MessageBean;
 import business.model.RawBean;
 import ui.list.ListPanel;
+import ui.pop.PopGeneralCheckFrame;
 
 import javax.swing.*;
 import java.awt.BorderLayout;
@@ -15,6 +16,8 @@ import java.util.List;
 public class MainFrame extends BaseFrame {
 
     ListPanel listPanel;
+
+    List<MessageBean> mList;
 
     public MainFrame(){
 
@@ -28,6 +31,12 @@ public class MainFrame extends BaseFrame {
         menuItem.addActionListener(this::clickFile);// 为菜单项添加事件监听器
         menu.add(menuItem);// 将菜单项对象添加到菜单对象中
 
+        JMenu menu1 = new JMenu("数据监测");// 创建菜单对象
+        menuBar.add(menu1);// 将菜单对象添加到菜单栏对象中
+        menuItem = new JMenuItem("字段总体检测");// 创建菜单项对象
+        menuItem.addActionListener(this::clickGeneralCheck);// 为菜单项添加事件监听器
+        menu1.add(menuItem);// 将菜单项对象添加到菜单对象中
+
         getContentPane().setLayout(new BorderLayout());
         listPanel = new ListPanel();
 
@@ -36,7 +45,9 @@ public class MainFrame extends BaseFrame {
         setVisible(true);
     }
 
+
     public void setData(List<MessageBean> list){
+        mList = list;
         listPanel.setData(list);
         validate();
         repaint();
@@ -51,6 +62,14 @@ public class MainFrame extends BaseFrame {
             List<RawBean> hexes = HexDataResolver.processRawLogFile(file);
             setData(MessageResolver.resolve(hexes));
         }
+    }
+
+    private void clickGeneralCheck(ActionEvent e) {
+        if(mList == null){
+            JOptionPane.showConfirmDialog(this, "请先读取数据");
+            return;
+        }
+        new PopGeneralCheckFrame(mList);
     }
 
 }
