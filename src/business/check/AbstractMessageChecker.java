@@ -23,8 +23,9 @@ public abstract class AbstractMessageChecker {
                 ret.add(bean);
                 isValid = false;
             }
-
+            postCheck(bean, isValid);
         });
+        postCheckAll(b1, ret);
         return ret;
     }
 
@@ -58,6 +59,15 @@ public abstract class AbstractMessageChecker {
      * @param isValid 该bean是否通过检测
      */
     protected void postCheck(MessageBean bean, boolean isValid){
+
+    }
+
+    /**
+     * 检测所有bean之后调用
+     * @param beans 所有被检查的bean
+     * @param probBeans 出问题的bean
+     */
+    protected void postCheckAll(List<MessageBean> beans, List<MessageBean> probBeans){
 
     }
 

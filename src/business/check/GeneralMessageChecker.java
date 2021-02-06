@@ -5,6 +5,8 @@ import business.model.EngineData;
 import business.model.MessageBean;
 import business.model.TotalCarData;
 
+import java.util.List;
+
 public class GeneralMessageChecker extends AbstractMessageChecker{
 
     int yiChangCount = 0;
@@ -54,15 +56,15 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
             float totalDistance = totalCarData.getTotalDistance();
             if(totalDistance < 0 || totalDistance > 9999999) isFanWeiYiChang = true;
             if(speed == 0) isLingZhi = true;
-            if(speed == Integer.parseInt("FFFFFFFE", 16) * 0.1f) isYiChang = true;
-            if(speed == Integer.parseInt("FFFFFFFF", 16) * 0.1f) isWuXiao = true;
+            if(speed == Long.parseLong("FFFFFFFE", 16) * 0.1f) isYiChang = true;
+            if(speed == Long.parseLong("FFFFFFFF", 16) * 0.1f) isWuXiao = true;
 
             //---总电压---
             float zongdianya = totalCarData.getZongDianYa();
             if(zongdianya < 0 || zongdianya > 10000) isFanWeiYiChang = true;
             if(zongdianya == 0) isLingZhi = true;
-            if(zongdianya == Integer.parseInt("FFFFFFFE", 16) * 0.1f) isYiChang = true;
-            if(zongdianya == Integer.parseInt("FFFFFFFF", 16) * 0.1f) isWuXiao = true;
+            if(zongdianya == Integer.parseInt("FFFE", 16) * 0.1f) isYiChang = true;
+            if(zongdianya == Integer.parseInt("FFFF", 16) * 0.1f) isWuXiao = true;
 
             //---总电流---
             float zongdianliu = totalCarData.getZongDianLiu();
@@ -246,13 +248,23 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
         return false;
     }
 
-    @Override
-    protected void preCheck(MessageBean bean) {
+    String checkResult;
 
+    @Override
+    protected void postCheckAll(List<MessageBean> beans, List<MessageBean> probBeans) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<html><body>");
+        sb.append("空值率:").append(String.format("%.2f", 100f*kongZhiCount/beans.size())).append("<br>");
+        sb.append("零值率:").append(String.format("%.2f", 100f*lingZhiCount/beans.size())).append("<br>");
+        sb.append("异常值率:").append(String.format("%.2f", 100f*yiChangCount/beans.size())).append("<br>");
+        sb.append("无效值率:").append(String.format("%.2f", 100f*wuXiaoCount/beans.size())).append("<br>");
+        sb.append("范围异常值率:").append(String.format("%.2f", 100f*fanWeiYiChangCount/beans.size())).append("<br>");
+        sb.append("<body></html>");
+        checkResult = sb.toString();
     }
 
     @Override
     public String getFinalResult() {
-        return "";
+        return checkResult;
     }
 }
