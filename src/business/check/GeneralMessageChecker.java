@@ -13,9 +13,7 @@ public class GeneralMessageChecker extends AbstractMessageChecker{
 
     @Override
     public boolean isDataValid(MessageBean bean) {
-        if(bean.getTotalCarData() == null){
-            return false;
-        }
+
 
         boolean isYiChang = false;
         boolean isWuXiao = false;
