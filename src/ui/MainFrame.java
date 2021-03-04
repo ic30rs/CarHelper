@@ -4,8 +4,9 @@ import business.HexDataResolver;
 import business.MessageResolver;
 import business.model.MessageBean;
 import business.model.RawBean;
-import ui.list.ListPanel;
+import ui.list.showlist.ListPanel;
 import ui.pop.PopGeneralCheckFrame;
+import ui.pop.PopTimeCheckFrame;
 
 import javax.swing.*;
 import java.awt.BorderLayout;
@@ -35,6 +36,9 @@ public class MainFrame extends BaseFrame {
         menuBar.add(menu1);// 将菜单对象添加到菜单栏对象中
         menuItem = new JMenuItem("字段总体检测");// 创建菜单项对象
         menuItem.addActionListener(this::clickGeneralCheck);// 为菜单项添加事件监听器
+        menu1.add(menuItem);// 将菜单项对象添加到菜单对象中
+        menuItem = new JMenuItem("字段时效性检测");// 创建菜单项对象
+        menuItem.addActionListener(this::clickTimeCheck);// 为菜单项添加事件监听器
         menu1.add(menuItem);// 将菜单项对象添加到菜单对象中
 
         getContentPane().setLayout(new BorderLayout());
@@ -70,6 +74,14 @@ public class MainFrame extends BaseFrame {
             return;
         }
         new PopGeneralCheckFrame(mList);
+    }
+
+    private void clickTimeCheck(ActionEvent e) {
+        if(mList == null){
+            JOptionPane.showConfirmDialog(this, "请先读取数据");
+            return;
+        }
+        new PopTimeCheckFrame(mList);
     }
 
 }

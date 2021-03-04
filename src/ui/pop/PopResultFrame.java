@@ -12,6 +12,8 @@ public abstract class PopResultFrame extends JFrame {
 
     JLabel text = new JLabel();
 
+    AbstractMessageChecker checker;
+
     public PopResultFrame(List<MessageBean> beans){
         setSize(400, 400);
         MyUtils.centerComponentOnScreen(this);
@@ -19,7 +21,7 @@ public abstract class PopResultFrame extends JFrame {
         getContentPane().setLayout(new GridLayout(1,1));
         getContentPane().add(text);
 
-        AbstractMessageChecker checker = getChecker();
+        checker = getChecker();
         checker.check(beans);
         text.setText(checker.getFinalResult());
 

@@ -1,7 +1,6 @@
-package ui.list;
+package ui.list.showlist;
 
 import business.model.MessageBean;
-import business.model.RawBean;
 
 import javax.swing.*;
 import java.awt.*;

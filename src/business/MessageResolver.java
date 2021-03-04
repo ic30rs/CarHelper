@@ -4,6 +4,7 @@ import business.model.*;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MessageResolver {
@@ -38,6 +39,19 @@ public class MessageResolver {
         bean.setVin(new String(hexStr2Byte(rawBean.getHexAt(4,20))));
         bean.setEncryptType(Integer.parseInt(rawBean.getHexAt(21,21), 16));
         bean.setDataLen(Integer.parseInt(rawBean.getHexAt(22,23), 16));
+
+        bean.setYear(Integer.parseInt(rawBean.getHexAt(24,24), 16));
+        bean.setMonth(Integer.parseInt(rawBean.getHexAt(25,25), 16));
+        bean.setDay(Integer.parseInt(rawBean.getHexAt(26,26), 16));
+        bean.setHour(Integer.parseInt(rawBean.getHexAt(27,27), 16));
+        bean.setMinute(Integer.parseInt(rawBean.getHexAt(28,28), 16));
+        bean.setSecond(Integer.parseInt(rawBean.getHexAt(29,29), 16));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+        calendar.set(2000+bean.getYear(), bean.getMonth()-1, bean.getDay(), bean.getHour(), bean.getMinute(), bean.getSecond());
+        bean.setCollectTime(calendar.getTime());
+
 
         if(bean.getCommandCode() == 0x01){//≥µ¡æµ«»Î
 

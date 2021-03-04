@@ -16,6 +16,7 @@ public abstract class AbstractMessageChecker {
     public List<MessageBean> check(List<MessageBean> beans){
         List<MessageBean> b1 = new ArrayList<>(beans);
         List<MessageBean> ret = new ArrayList<>();
+        preCheckAll(b1);
         b1.forEach(bean->{
             preCheck(bean);
             boolean isValid = true;
@@ -63,6 +64,14 @@ public abstract class AbstractMessageChecker {
     }
 
     /**
+     * 检测所有bean之前调用
+     * @param beans
+     */
+    protected void preCheckAll(List<MessageBean> beans){
+
+    }
+
+    /**
      * 检测所有bean之后调用
      * @param beans 所有被检查的bean
      * @param probBeans 出问题的bean
@@ -76,5 +85,11 @@ public abstract class AbstractMessageChecker {
      * @return 检查结果
      */
     public abstract String getFinalResult();
+
+  /**
+   * 获取最终结果，任意类型
+   * @return 检查结果
+   */
+  public abstract Object getFinalResultObj();
 
 }
